@@ -1,0 +1,340 @@
+:root {
+  --nur-blue: #2563eb;
+  --nur-blue-dark: #1d4ed8;
+  --nur-ink: #0f172a;
+  --nur-muted: #475569;
+  --nur-border: #dbe4f0;
+  --nur-surface: #ffffff;
+  --nur-surface-soft: #f8fbff;
+  --nur-shadow: 0 24px 60px -30px rgba(37, 99, 235, 0.25);
+}
+
+body,
+textarea,
+input,
+select,
+button {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+  color: var(--nur-ink);
+}
+
+#header {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(219, 228, 240, 0.9);
+  box-shadow: 0 10px 40px -26px rgba(15, 23, 42, 0.25);
+  color: var(--nur-ink);
+}
+
+#header a:link,
+#header a:visited {
+  color: var(--nur-ink);
+}
+
+#site-name {
+  font-weight: 800;
+}
+
+.nur-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nur-brand__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--nur-blue) 0%, #60a5fa 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: var(--nur-shadow);
+}
+
+.nur-brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.nur-brand__title {
+  color: var(--nur-blue);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.nur-brand__subtitle {
+  color: var(--nur-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+div.breadcrumbs {
+  background: transparent;
+  color: var(--nur-muted);
+  border: none;
+}
+
+div.breadcrumbs a {
+  color: var(--nur-blue-dark);
+}
+
+#content,
+#content-main,
+.dashboard #content {
+  color: var(--nur-ink);
+}
+
+.module,
+#changelist,
+.inline-group,
+.nur-hero-card,
+.nur-models-card,
+.nur-login-card,
+.nur-login-hero,
+.nur-quick-card,
+.nur-app-block {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--nur-border);
+  border-radius: 24px;
+  box-shadow: var(--nur-shadow);
+}
+
+.nur-dashboard {
+  display: grid;
+  gap: 24px;
+}
+
+.nur-hero-card {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px;
+}
+
+.nur-hero-card h1,
+.nur-login-hero h1 {
+  margin: 8px 0 12px;
+  font-size: 38px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--nur-ink);
+}
+
+.nur-kicker {
+  margin: 0;
+  color: var(--nur-blue);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.nur-hero-card p,
+.nur-login-hero p,
+.nur-models-card__head p,
+.nur-quick-card span {
+  color: var(--nur-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.nur-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nur-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.nur-btn--primary {
+  background: var(--nur-blue);
+  color: #fff !important;
+}
+
+.nur-btn--ghost {
+  border: 1px solid var(--nur-border);
+  color: var(--nur-ink) !important;
+  background: #fff;
+}
+
+.nur-quick-grid,
+.nur-app-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.nur-quick-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.nur-quick-card {
+  padding: 22px;
+  text-decoration: none;
+}
+
+.nur-quick-card strong,
+.nur-models-card h2,
+.nur-app-block h3 {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--nur-ink);
+  font-weight: 800;
+}
+
+.nur-models-card {
+  padding: 28px;
+}
+
+.nur-app-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 18px;
+}
+
+.nur-app-block {
+  padding: 20px;
+}
+
+.nur-model-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nur-model-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid #edf2f7;
+}
+
+.nur-model-list li:first-child {
+  border-top: 0;
+}
+
+.nur-model-list a {
+  color: var(--nur-blue-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nur-model-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nur-model-actions a {
+  font-size: 13px;
+}
+
+.nur-login #container {
+  min-height: 100vh;
+}
+
+.nur-login-shell {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 36px auto 0;
+}
+
+.nur-login-hero,
+.nur-login-card {
+  padding: 32px;
+}
+
+.nur-login-points {
+  margin: 24px 0 0;
+  padding-left: 18px;
+  color: var(--nur-muted);
+}
+
+.login #content {
+  padding: 0;
+}
+
+.login #content-main {
+  width: auto;
+}
+
+.login .submit-row {
+  background: transparent;
+  border: 0;
+  padding: 12px 0 0;
+}
+
+.login .submit-row input {
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--nur-blue) 0%, #60a5fa 100%);
+  color: #fff;
+  font-weight: 800;
+  min-height: 50px;
+}
+
+input,
+textarea,
+select {
+  border-radius: 12px !important;
+  border: 1px solid #cbd5e1 !important;
+  padding: 10px 12px !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--nur-blue) !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row a.deletelink {
+  border-radius: 999px !important;
+}
+
+#changelist-filter,
+#changelist-form .actions,
+.selector,
+.paginator,
+fieldset.module,
+.submit-row {
+  border-radius: 18px;
+}
+
+@media (max-width: 900px) {
+  .nur-login-shell,
+  .nur-hero-card {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+}

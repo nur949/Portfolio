@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Nur Superadmin{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'admin/css/nur-admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <div class="nur-brand">
+    <span class="nur-brand__icon">N</span>
+    <div class="nur-brand__text">
+      <span class="nur-brand__title">Nur</span>
+      <span class="nur-brand__subtitle">Superadmin Control</span>
+    </div>
+  </div>
+{% endblock %}
+
+{% block userlinks %}
+  {% if site_url %}
+    <a href="{{ site_url }}" target="_blank" rel="noreferrer">View site</a> /
+  {% endif %}
+  {{ block.super }}
+{% endblock %}

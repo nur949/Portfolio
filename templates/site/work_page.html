@@ -1,0 +1,97 @@
+{% extends "site/base.html" %}
+
+{% block title %}{{ page.title }} | {{ site.site_name|default:"Nur" }}{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="content-wrapper">
+      <header class="section-title">
+        <span class="section-title__caption">{{ page.caption }}</span>
+        <h1>{{ page.title }}</h1>
+        <p>{{ page.description }}</p>
+      </header>
+    </div>
+  </section>
+
+  <section class="section-home">
+    <div class="background-grid background-grid--fade-out section-content-shell">
+      <div class="content-wrapper work-layout">
+        <article class="prose-block">
+          {{ page.body_html|safe }}
+        </article>
+
+        {% if page.slug == "contact" %}
+          <div class="cards-grid cards-grid--two">
+            <section class="card">
+              <p class="footer-caption">Get in touch</p>
+              <h2>{{ site.owner_name }}</h2>
+              <p>{{ site.availability_text }}</p>
+              <div class="info-list">
+                {% if site.primary_email %}<a href="mailto:{{ site.primary_email }}">{{ site.primary_email }}</a>{% endif %}
+                {% if site.phone %}<span>{{ site.phone }}</span>{% endif %}
+                {% if site.location %}<span>{{ site.location }}</span>{% endif %}
+              </div>
+            </section>
+            <section class="card">
+              <p class="footer-caption">Social Links</p>
+              <div class="info-list">
+                {% for item in social_links %}
+                  <a href="{{ item.url }}" target="_blank" rel="noreferrer">{{ item.label }}</a>
+                {% endfor %}
+              </div>
+            </section>
+          </div>
+        {% elif page.slug == "skills-and-tools" %}
+          <div class="cards-grid cards-grid--two">
+            {% for group in skill_groups %}
+              <section class="card">
+                <p class="footer-caption">{{ group.title }}</p>
+                <h2>{{ group.description }}</h2>
+                <div class="skill-list">
+                  {% for skill in group.skills.all %}
+                    <article class="skill-item">
+                      <div class="skill-item__top">
+                        <strong>{{ skill.name }}</strong>
+                        <span>{{ skill.level }}</span>
+                      </div>
+                      <p>{{ skill.summary }}</p>
+                    </article>
+                  {% endfor %}
+                </div>
+              </section>
+            {% endfor %}
+          </div>
+        {% elif page.slug == "experience" %}
+          <div class="timeline">
+            {% for item in experience_items %}
+              <article class="card timeline-item">
+                <p class="footer-caption">{{ item.date_range }}</p>
+                <h2>{{ item.role }}</h2>
+                <p class="muted">{{ item.company }}{% if item.location %} &middot; {{ item.location }}{% endif %}</p>
+                <p>{{ item.summary }}</p>
+                {% if item.achievement_items %}
+                  <ul class="bullet-list">
+                    {% for point in item.achievement_items %}
+                      <li>{{ point }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </article>
+            {% endfor %}
+          </div>
+        {% elif page.slug == "studio" %}
+          <div class="cards-grid cards-grid--three">
+            {% for service in services %}
+              <article class="card">
+                <p class="footer-caption">{{ service.highlight }}</p>
+                <h2>{{ service.title }}</h2>
+                <p>{{ service.summary }}</p>
+              </article>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends "site/base.html" %}
+{% load static %}
+
+{% block title %}{{ site.site_name|default:"Nur" }} | {{ site.role_title|default:"Django Developer" }}{% endblock %}
+{% block description %}{{ site.seo_description }}{% endblock %}
+
+{% block content %}
+  <section class="hero background-grid background-grid--fade-out">
+    <div class="content-wrapper">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <div class="hero__greeting">
+            <span>{{ home.greeting }}</span>
+            <img src="{% static 'site/images/emojis/love-you-gesture.png' %}" alt="" aria-hidden="true">
+          </div>
+          <h1 class="hero__title">I'm <strong>{{ hero_first_name }}</strong>{% if hero_remaining_name %} {{ hero_remaining_name }}{% endif %},</h1>
+          <p class="hero__roleline">
+            <span>A</span>
+            <strong>{{ home.role }}</strong>
+            <span>{{ home.role_description }}</span>
+          </p>
+          <p class="hero__summary">{{ home.hero_description }}</p>
+          <div class="hero__actions">
+            <a href="{{ home.primary_cta_url }}" class="button button--solid">{{ home.primary_cta_label }}</a>
+            <a href="{{ home.secondary_cta_url }}" class="button button--ghost">{{ home.secondary_cta_label }}</a>
+          </div>
+        </div>
+
+        <div class="hero__image">
+          <div class="hero__image-mask">
+            <div class="hero-photo-frame">
+              <div class="hero-photo-frame__panel" aria-hidden="true">
+                <span class="hero-photo-frame__corner hero-photo-frame__corner--top-left"></span>
+                <span class="hero-photo-frame__corner hero-photo-frame__corner--top-right"></span>
+                <span class="hero-photo-frame__corner hero-photo-frame__corner--bottom-left"></span>
+                <span class="hero-photo-frame__corner hero-photo-frame__corner--bottom-right"></span>
+              </div>
+              <span class="hero-photo-frame__halo hero-photo-frame__halo--outer" aria-hidden="true"></span>
+              <span class="hero-photo-frame__halo hero-photo-frame__halo--inner" aria-hidden="true"></span>
+              <span class="hero-photo-frame__line hero-photo-frame__line--one" aria-hidden="true"></span>
+              <span class="hero-photo-frame__line hero-photo-frame__line--two" aria-hidden="true"></span>
+              <div class="hero-photo-frame__inner">
+                <img src="{% static 'site/images/me.png' %}" alt="{{ site.owner_name }} portrait" class="hero-photo">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__tech">
+        <p>Current core backend stack:</p>
+        <div class="hero__tech-list">
+          {% for item in home_tech_stack %}
+            <span class="{% if item.icon == 'divider' %}is-divider{% endif %}">{{ item.label }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-strip">
+    <div class="content-wrapper">
+      <div class="featured-strip__grid">
+        {% for card in home_feature_cards %}
+          <article class="featured-card">
+            <div class="featured-card__icon featured-card__icon--{{ card.color }}">
+              {% if card.icon == "sparkles" %}
+                <span>&#10022;</span>
+              {% elif card.icon == "heart" %}
+                <span>&#9829;</span>
+              {% else %}
+                <span>&lt;/&gt;</span>
+              {% endif %}
+            </div>
+            <div>
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.description }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <div class="content-wrapper">
+      <blockquote class="quote-block">
+        <span class="quote-block__mark">&ldquo;</span>
+        <span class="quote-block__text">
+          <span><em>{{ home.quote_line_one }}</em></span>
+          <span class="quote-block__row">
+            <span class="quote-block__line"></span>
+            <span><strong>{{ home.quote_line_two_prefix }}</strong> and <strong>{{ home.quote_line_two_suffix }}</strong></span>
+            <span class="quote-block__line quote-block__line--short"></span>
+          </span>
+          <span>{{ home.quote_line_three_prefix }} <strong class="quote-block__highlight">{{ home.quote_line_three_highlight }}</strong></span>
+        </span>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="section-home">
+    <div class="content-wrapper">
+      <header class="section-title">
+        <span class="section-title__caption">{{ home_feature_cards.0.title|default:"Clean & Intuitive" }}</span>
+        <h2>Backend systems that stay clean under real-world pressure.</h2>
+        <p>From data structure to deployment, the goal is reliable Django delivery that teams can manage and extend with confidence.</p>
+      </header>
+    </div>
+    <div class="background-grid background-grid--fade-out section-content-shell">
+      <div class="content-wrapper section-content section-content--showcase">
+        <div class="showcase-steps">
+          <button type="button" class="showcase-step is-active">
+            <span class="showcase-step__number">1</span>
+            <span class="showcase-step__body">
+              <strong>Typography</strong>
+              <small>Translate product goals into a clear Django app structure and delivery plan.</small>
+            </span>
+          </button>
+          <button type="button" class="showcase-step">
+            <span class="showcase-step__number">2</span>
+            <span class="showcase-step__body">
+              <strong>Data Modeling</strong>
+              <small>Design models, admin workflows, and relationships that support long-term maintenance.</small>
+            </span>
+          </button>
+          <button type="button" class="showcase-step">
+            <span class="showcase-step__number">3</span>
+            <span class="showcase-step__body">
+              <strong>API Delivery</strong>
+              <small>Build serializers, business logic, and integration-ready endpoints with clean validation.</small>
+            </span>
+          </button>
+          <button type="button" class="showcase-step">
+            <span class="showcase-step__number">4</span>
+            <span class="showcase-step__body">
+              <strong>Release</strong>
+              <small>Ship with migrations, static assets, environment config, and deploy-ready production settings.</small>
+            </span>
+          </button>
+        </div>
+        <div class="todo-preview-stack">
+          <article class="todo-card-preview">
+            <div class="todo-card-preview__top">
+              <span class="todo-badge todo-badge--brand">N</span>
+              <span class="todo-badge todo-badge--danger">High</span>
+            </div>
+            <h3>{{ home.detail_title }}</h3>
+            <p>{{ home.detail_description }}</p>
+            <div class="todo-card-preview__tags">
+              <span class="todo-badge todo-badge--info">Design</span>
+              <span class="todo-badge todo-badge--warn">Quality</span>
+            </div>
+            <div class="todo-card-preview__meta">10:00 AM &middot; Tomorrow</div>
+          </article>
+          <article class="todo-card-preview todo-card-preview--secondary">
+            <div class="todo-card-preview__top">
+              <span class="todo-badge todo-badge--brand">N</span>
+              <span class="todo-badge todo-badge--danger">Focus</span>
+            </div>
+            <h3>{{ home.optimized_title }}</h3>
+            <p>{{ home.optimized_description }}</p>
+            <div class="todo-card-preview__tags">
+              <span class="todo-badge todo-badge--info">Code</span>
+              <span class="todo-badge todo-badge--warn">Performance</span>
+            </div>
+            <div class="todo-card-preview__meta">Today &middot; Shipping</div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-home section-home--simple">
+    <div class="content-wrapper">
+      <header class="section-title">
+        <span class="section-title__caption">Detail Oriented</span>
+        <h2>{{ home.detail_title }}</h2>
+        <p>{{ home.detail_description }}</p>
+      </header>
+    </div>
+  </section>
+
+  <section class="section-home section-home--simple">
+    <div class="content-wrapper">
+      <header class="section-title">
+        <span class="section-title__caption">Pretty &amp; Optimized</span>
+        <h2>{{ home.optimized_title }}</h2>
+        <p>{{ home.optimized_description }}</p>
+      </header>
+    </div>
+  </section>
+
+  <section class="section-home">
+    <div class="content-wrapper section-title section-title--with-action">
+      <div>
+        <span class="section-title__caption">Projects</span>
+        <h2>Selected work and experiments.</h2>
+      </div>
+      <a href="/projects/" class="button button--soft">view all projects</a>
+    </div>
+
+    <div class="content-wrapper projects-grid">
+      {% for project in featured_projects %}
+        <article class="project-card">
+          <div class="project-card__window">
+            <div class="project-card__window-bar">
+              <span></span><span></span><span></span>
+            </div>
+            {% if project.demo_preview_url %}
+              <div class="project-card__media project-card__media--screenshot">
+                <img src="{{ project.demo_preview_url }}" alt="{{ project.title }} landing page cover" class="project-card__screenshot">
+              </div>
+            {% elif project.demo_url %}
+              <div class="project-card__media project-card__media--preview">
+                <iframe src="{{ project.demo_url }}" title="{{ project.title }} preview" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
+              </div>
+            {% elif project.cover_display_url %}
+              <div class="project-card__media">
+                <img src="{{ project.cover_display_url }}" alt="{{ project.title }} cover">
+              </div>
+            {% endif %}
+          </div>
+          <div class="project-card__body">
+            <div class="pill-list">
+              {% for item in project.stack_items %}
+                <span>{{ item }}</span>
+              {% endfor %}
+            </div>
+            <h3>{{ project.title }}</h3>
+            <p class="project-card__summary">{{ project.summary }}</p>
+            <div class="project-card__actions">
+              {% if project.demo_url %}
+                <a href="{{ project.demo_url }}" class="button button--solid" target="_blank" rel="noreferrer">Live Demo</a>
+              {% elif project.live_url %}
+                <a href="{{ project.live_url }}" class="button button--solid" target="_blank" rel="noreferrer">Live Preview</a>
+              {% endif %}
+              {% if project.repo_url %}
+                <a href="{{ project.repo_url }}" class="button button--ghost" target="_blank" rel="noreferrer">Source</a>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

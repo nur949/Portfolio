@@ -1,0 +1,98 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="nur-dashboard">
+  <section class="nur-hero-card">
+    <div>
+      <p class="nur-kicker">Superadmin Dashboard</p>
+      <h1>Control your portfolio content from one place.</h1>
+      <p>
+        Manage branding, homepage sections, projects, pages, skills, and contact details
+        with fast access to every key content area.
+      </p>
+    </div>
+    <div class="nur-hero-actions">
+      <a class="nur-btn nur-btn--primary" href="{% url 'admin:cms_sitesettings_changelist' %}">Open site settings</a>
+      <a class="nur-btn nur-btn--ghost" href="{{ site_url }}" target="_blank" rel="noreferrer">View live site</a>
+    </div>
+  </section>
+
+  <section class="nur-quick-grid">
+    <a class="nur-quick-card" href="{% url 'admin:cms_homepage_changelist' %}">
+      <strong>Homepage</strong>
+      <span>Edit hero, quote, buttons, and homepage messaging.</span>
+    </a>
+    <a class="nur-quick-card" href="{% url 'admin:cms_project_changelist' %}">
+      <strong>Projects</strong>
+      <span>Add, remove, feature, and reorder project entries.</span>
+    </a>
+    <a class="nur-quick-card" href="{% url 'admin:cms_managedpage_changelist' %}">
+      <strong>Managed Pages</strong>
+      <span>Update work pages like contact, skills, experience, and studio.</span>
+    </a>
+    <a class="nur-quick-card" href="{% url 'admin:cms_skillgroup_changelist' %}">
+      <strong>Skills</strong>
+      <span>Maintain grouped skills with inline items and sorting.</span>
+    </a>
+    <a class="nur-quick-card" href="{% url 'admin:cms_sociallink_changelist' %}">
+      <strong>Social Links</strong>
+      <span>Control footer and contact profile links from one screen.</span>
+    </a>
+    <a class="nur-quick-card" href="{% url 'admin:cms_experience_changelist' %}">
+      <strong>Experience</strong>
+      <span>Manage timeline entries, achievements, and current status.</span>
+    </a>
+    <a class="nur-quick-card" href="{% url 'admin:auth_user_changelist' %}">
+      <strong>Users</strong>
+      <span>Create, remove, and manage admin users with full access control.</span>
+    </a>
+    <a class="nur-quick-card" href="{% url 'admin:auth_group_changelist' %}">
+      <strong>Permissions</strong>
+      <span>Control roles and grouped permissions for your admin team.</span>
+    </a>
+  </section>
+
+  <section class="nur-models-card">
+    <div class="nur-models-card__head">
+      <h2>All management areas</h2>
+      <p>Use the sections below for full CRUD control across the website.</p>
+    </div>
+
+    <div class="nur-app-grid">
+      {% for app in app_list %}
+        <section class="nur-app-block">
+          <header>
+            <h3>{{ app.name }}</h3>
+          </header>
+          <ul class="nur-model-list">
+            {% for model in app.models %}
+              <li>
+                <div>
+                  {% if model.admin_url %}
+                    <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                  {% else %}
+                    <span>{{ model.name }}</span>
+                  {% endif %}
+                </div>
+                <div class="nur-model-actions">
+                  {% if model.add_url %}
+                    <a href="{{ model.add_url }}">Add</a>
+                  {% endif %}
+                  {% if model.admin_url %}
+                    <a href="{{ model.admin_url }}">Manage</a>
+                  {% endif %}
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

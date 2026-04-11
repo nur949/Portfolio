@@ -1,0 +1,69 @@
+{% extends "site/base.html" %}
+
+{% block title %}Projects | {{ site.site_name|default:"Nur" }}{% endblock %}
+{% block description %}Selected projects and template demos from {{ site.owner_name }}.{% endblock %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="content-wrapper">
+      <header class="section-title">
+        <span class="section-title__caption">Projects</span>
+        <h1>Selected projects and live demos.</h1>
+        <p>Explore the work, stacks, and interactive previews managed from the portfolio CMS.</p>
+      </header>
+    </div>
+  </section>
+
+  <section class="section-home">
+    <div class="background-grid background-grid--fade-out section-content-shell">
+      <div class="content-wrapper projects-grid projects-grid--full">
+        {% for project in projects %}
+          <article class="project-card project-card--full">
+            <div class="project-card__window">
+              <div class="project-card__window-bar">
+                <span></span><span></span><span></span>
+                <div class="project-card__window-title">{{ project.title }}</div>
+              </div>
+              {% if project.demo_preview_url %}
+                <div class="project-card__media project-card__media--screenshot">
+                  <img src="{{ project.demo_preview_url }}" alt="{{ project.title }} landing page cover" class="project-card__screenshot">
+                </div>
+              {% elif project.demo_url %}
+                <div class="project-card__media project-card__media--preview">
+                  <iframe src="{{ project.demo_url }}" title="{{ project.title }} preview" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
+                </div>
+              {% elif project.cover_display_url %}
+                <div class="project-card__media">
+                  <img src="{{ project.cover_display_url }}" alt="{{ project.title }} cover">
+                </div>
+              {% endif %}
+            </div>
+            <div class="project-card__body">
+              <div class="pill-list">
+                {% for item in project.stack_items %}
+                  <span>{{ item }}</span>
+                {% endfor %}
+              </div>
+              <h2>{{ project.title }}</h2>
+              <p class="project-card__summary">{{ project.summary }}</p>
+              <p>{{ project.description }}</p>
+              <div class="project-card__actions">
+                {% if project.demo_url %}
+                  <a href="{{ project.demo_url }}" class="button button--solid" target="_blank" rel="noreferrer">Live Demo</a>
+                {% elif project.live_url %}
+                  <a href="{{ project.live_url }}" class="button button--solid" target="_blank" rel="noreferrer">Live Preview</a>
+                {% endif %}
+                {% if project.demo_url and project.live_url %}
+                  <a href="{{ project.live_url }}" class="button button--ghost" target="_blank" rel="noreferrer">External Live</a>
+                {% endif %}
+                {% if project.repo_url %}
+                  <a href="{{ project.repo_url }}" class="button button--ghost" target="_blank" rel="noreferrer">Source</a>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

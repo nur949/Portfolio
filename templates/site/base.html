@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ site.site_name|default:"Nur" }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ site.seo_description|default:'Django Developer portfolio.' }}{% endblock %}">
+    <link rel="icon" href="{% static 'site/images/favicon-nur.svg' %}" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'site/css/site.css' %}">
+  </head>
+  <body>
+    <div class="aurora-shell" aria-hidden="true">
+      <div class="aurora-sphere aurora-sphere--pink"></div>
+      <div class="aurora-sphere aurora-sphere--blue"></div>
+      <div class="aurora-sphere aurora-sphere--violet"></div>
+      <div class="aurora-noise"></div>
+      <div class="aurora-particles" id="aurora-particles"></div>
+      <div class="aurora-drops" id="aurora-drops"></div>
+    </div>
+    <header class="site-header">
+      <div class="site-header__backdrop"></div>
+      <div class="content-wrapper-max">
+        <div class="site-header__inner">
+          <nav class="site-nav-group" aria-label="Primary">
+            <a href="/" class="nav-logo" aria-label="Home">
+              <span class="nav-logo__icon">N</span>
+              <span class="nav-logo__text">Nur</span>
+            </a>
+            <ul class="site-nav" id="site-nav">
+              <li><a href="/projects/" class="nav-link {% if '/projects/' in request.path %}is-active{% endif %}">Projects</a></li>
+              <li class="nav-dropdown">
+                <button type="button" class="nav-link nav-link--button {% if '/work/' in request.path %}is-active{% endif %}" aria-expanded="false">
+                  Work
+                  <span class="nav-link__caret"></span>
+                </button>
+                <div class="nav-dropdown__menu">
+                  {% for slug, label, href in work_links %}
+                    <a href="{{ href }}" class="nav-link nav-link--dropdown {% if href == request.path %}is-active{% endif %}">{{ label }}</a>
+                  {% endfor %}
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+          <ul class="site-actions">
+            {% if site.twitter_url %}
+              <li>
+                <a href="{{ site.twitter_url }}" target="_blank" rel="noreferrer" class="nav-icon" aria-label="Twitter">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18.901 2H21.98l-6.724 7.684L23.167 22h-6.194l-4.851-6.35L6.567 22H3.486l7.193-8.223L1 2h6.352l4.385 5.79L18.901 2Zm-1.086 18.148h1.706L6.424 3.757H4.594l13.221 16.39Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </li>
+            {% endif %}
+            {% if site.github_url %}
+              <li>
+                <a href="{{ site.github_url }}" target="_blank" rel="noreferrer" class="nav-icon" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .5C5.65.5.5 5.73.5 12.19c0 5.17 3.3 9.55 7.88 11.1.58.11.79-.26.79-.57 0-.28-.01-1.2-.02-2.18-3.21.71-3.89-1.39-3.89-1.39-.52-1.36-1.28-1.72-1.28-1.72-1.05-.73.08-.72.08-.72 1.16.08 1.77 1.22 1.77 1.22 1.03 1.8 2.71 1.28 3.37.98.1-.77.4-1.28.72-1.57-2.56-.3-5.25-1.31-5.25-5.82 0-1.29.45-2.35 1.19-3.18-.12-.3-.52-1.53.11-3.19 0 0 .97-.32 3.19 1.21a10.84 10.84 0 0 1 5.8 0c2.22-1.53 3.19-1.21 3.19-1.21.63 1.66.23 2.89.11 3.19.74.83 1.19 1.89 1.19 3.18 0 4.52-2.7 5.51-5.27 5.81.41.37.78 1.08.78 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.21.69.8.57A11.7 11.7 0 0 0 23.5 12.2C23.5 5.73 18.35.5 12 .5Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </li>
+            {% endif %}
+            {% if site.linkedin_url %}
+              <li>
+                <a href="{{ site.linkedin_url }}" target="_blank" rel="noreferrer" class="nav-icon" aria-label="LinkedIn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5.5 8.5A1.75 1.75 0 1 0 5.5 5a1.75 1.75 0 0 0 0 3.5ZM4 10h3v10H4V10Zm5 0h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.03 0 3.59 2.06 3.59 4.73V20h-3v-4.84c0-1.15-.02-2.63-1.55-2.63-1.56 0-1.8 1.26-1.8 2.55V20H9V10Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </li>
+            {% endif %}
+            <li class="mobile-only">
+              <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span></span>
+                <span></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="content-wrapper">
+        <div class="site-footer__main">
+          <div class="site-footer__about">
+            <p class="footer-caption">{{ site.footer_about_title|default:"About Me" }}</p>
+            <p class="site-footer__copy">{{ site.footer_text }}</p>
+            <ul class="site-footer__socials">
+              {% for item in social_links %}
+                <li><a href="{{ item.url }}" target="_blank" rel="noreferrer" aria-label="{{ item.label }}">{{ item.label }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="site-footer__links">
+            <section>
+              <p class="footer-caption">Work</p>
+              <ul>
+                {% for slug, label, href in work_links %}
+                  <li><a href="{{ href }}" class="footer-link">{{ label }}</a></li>
+                {% endfor %}
+              </ul>
+            </section>
+            <section>
+              <p class="footer-caption">Reach</p>
+              <ul>
+                {% if site.primary_email %}<li><a href="mailto:{{ site.primary_email }}" class="footer-link">{{ site.primary_email }}</a></li>{% endif %}
+                {% if site.phone %}<li><span class="footer-link">{{ site.phone }}</span></li>{% endif %}
+                {% if site.location %}<li><span class="footer-link">{{ site.location }}</span></li>{% endif %}
+              </ul>
+            </section>
+            <section>
+              <p class="footer-caption">This Site</p>
+              <ul>
+                {% if site.design_concept_url %}<li><a href="{{ site.design_concept_url }}" target="_blank" rel="noreferrer" class="footer-link">Design Concept</a></li>{% endif %}
+                {% if site.source_code_url %}<li><a href="{{ site.source_code_url }}" target="_blank" rel="noreferrer" class="footer-link">Source Code</a></li>{% endif %}
+                {% if site.last_update_url %}<li><a href="{{ site.last_update_url }}" target="_blank" rel="noreferrer" class="footer-link">Recent Update</a></li>{% endif %}
+              </ul>
+            </section>
+          </div>
+        </div>
+
+        <div class="site-footer__bar">
+          <div>&copy; {% now "Y" %}, {{ site.copyright_name|default:site.owner_name }}</div>
+          {% if site.last_update_url %}
+            <a href="{{ site.last_update_url }}" target="_blank" rel="noreferrer">see the recent update on GitHub</a>
+          {% endif %}
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'site/js/site.js' %}"></script>
+  </body>
+</html>

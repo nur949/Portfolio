@@ -1,0 +1,47 @@
+{% extends "site/base.html" %}
+
+{% block title %}Superadmin | {{ site.site_name|default:"Nur" }}{% endblock %}
+{% block description %}Custom superadmin dashboard for managing the full Django-powered portfolio site.{% endblock %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">Superadmin</p>
+      <h1>Custom control panel with the frontend look and feel.</h1>
+      <p>Use this dashboard for quick access, overview, and management shortcuts while keeping the default Django admin untouched at <a href="/admin/">/admin/</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell cards-grid cards-grid--four">
+      {% for item in superadmin_stats %}
+        <article class="card stat-card">
+          <p class="eyebrow">{{ item.label }}</p>
+          <h2>{{ item.value }}</h2>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell section-heading">
+      <div>
+        <p class="eyebrow">Management Areas</p>
+        <h2>Everything important is one click away.</h2>
+      </div>
+      <a href="/admin/" class="button button--ghost">Open Default Admin</a>
+    </div>
+    <div class="shell cards-grid cards-grid--two">
+      {% for card in superadmin_cards %}
+        <article class="card superadmin-card">
+          <p class="eyebrow">Manage</p>
+          <h2>{{ card.title }}</h2>
+          <p>{{ card.description }}</p>
+          <div class="project-card__actions">
+            <a href="{{ card.manage_url }}" class="button button--solid">Open</a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
