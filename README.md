@@ -66,5 +66,25 @@ The backend is **fully API-ready**, admin-managed, and deployable on Render with
 
 ```bash
 git clone https://github.com/nur949/Portfolio.git
-cd <your-repo-folder>   
 
+
+```bash
+python -m venv venv
+# Activate environment:
+source venv/bin/activate  # Linux / Mac
+venv\Scripts\activate     # Windows
+
+```bash
+pip install -r requirements.txt
+
+```bash
+python manage.py migrate
+
+```bash
+python manage.py seed_portfolio
+
+```bash
+python manage.py runserver
+
+### Open http://127.0.0.1:8000
+ in your browser.
