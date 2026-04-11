@@ -85,14 +85,3 @@ python manage.py seed_portfolio
 
 ```bash
 python manage.py runserver
-
-
-
-
----
-
-✅ This version now includes a **complete installation guide**, from prerequisites to running the server.  
-
-If you want, I can **also add a “PostgreSQL Setup Example” section** showing exactly how to create the DB, user, and URL string, so someone can run it **completely fresh without any setup confusion**.  
-
-Do you want me to add that too?
