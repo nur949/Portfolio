@@ -85,8 +85,3 @@ python manage.py seed_portfolio
 
 ```bash
 python manage.py runserver
-
-
-### Run
-
- **Open http://127.0.0.1:8000**
